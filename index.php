@@ -48,31 +48,6 @@
             </div>                
         </div>
     </div>
-    <script src="assets/js/main.js" type="text/javascript"></script>
-    <script>
-      (function () {
-          var selectCountry = document.querySelector('[name="country"]');
-          ajax('get', 'getCountries.php', {}, fillCountries);
-          function fillCountries(r) {
-              var countries = r.split(',');
-              console.log(countries);
-              for(var i=0; i<countries.length;i++){
-                var country=countries[i].split(';');
-                var opt=document.createElement('option');
-                opt.text=country[1];
-                opt.value=country[0];
-                selectCountry.appendChild(opt);
-              }
-          }
-//              var btns = [];
-//              btns = document.querySelectorAll('button');
-//              var output = document.querySelector('#output');
-//              for (var i = 0; i < btns.length; i++) {
-//                  //var btn[i] = document.querySelector('button'); //ermöglicht die Verwendung von CSS-Selektoren wie # und .
-//
-//                  btns[i].addEventListener('click', ajaxPost);
-//              }              
-      })();
-    </script>
+    <script src="assets/js/main.js" type="text/javascript"></script>    
 </body>
 </html>

@@ -13,11 +13,21 @@ class DbClassExt extends DbClass {
   private $columns = '*';
   private $statement = '';
   private $orderBy = '';
+  private $where = '';
+  private $groupBy = '';
 
   /**
    * 
    * @param string $cols Eingabe der Spalte()
    */
+  public function setWhere(string $where) {
+    $this->where = $where;
+  }
+
+  public function setGroupBy(string $param) {
+    $this->groupBy = $param;
+  }
+
   public function setColumns(string $cols) {
     $this->columns = $cols;
   }
@@ -38,11 +48,13 @@ class DbClassExt extends DbClass {
   }
 
   public function getData(string $columns = '*', string $statement = '', string $orderBy = '', string $sort = '') {
-    $o = '';
-    ($this->orderBy !== '') ? $o = ' ORDER BY ' . $this->orderBy : $o = '';
-    $query = sprintf('SELECT %s %s FROM %s %s', $this->statement, $this->columns, $this->tableName, $o);
+
+    $o = ($this->orderBy !== '') ? ' ORDER BY ' . $this->orderBy : '';
+    $w = ($this->where !== '') ? ' WHERE ' . $this->where : '';
+    $g = ($this->groupBy !== '') ? ' GROUP BY ' . $this->groupBy : '';
+    $query = sprintf('SELECT %s %s FROM %s %s %s %s', $this->statement, $this->columns, $this->tableName, $w, $g, $o);
     $stmt = $this->query($query);
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);    
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $data;
   }
 
