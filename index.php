@@ -57,9 +57,10 @@
               var countries = r.split(',');
               console.log(countries);
               for(var i=0; i<countries.length;i++){
+                var country=countries[i].split(';');
                 var opt=document.createElement('option');
-                opt.text=countries[i];
-                opt.value=countries[i];
+                opt.text=country[1];
+                opt.value=country[0];
                 selectCountry.appendChild(opt);
               }
           }
