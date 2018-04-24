@@ -15,8 +15,8 @@
         for (var i = 0; i < countries.length; i++) {
             //var country=countries[i].split(';');
             var opt = document.createElement('option');
-            opt.text = countries[i].country;//Objekt json mit Unterelement countries, das jeweils die Wertepaare country-Wert und iso2-Wert hat
-            opt.value = countries[i].iso2;
+            opt.text = countries[i].country;//Objekt json mit Unterelement countries, das jeweils die Wertepaare country-Wert und iso3-Wert hat
+            opt.value = countries[i].iso3;
 //                opt.text=country[1];
 //                opt.value=country[0];
             selectCountry.appendChild(opt);
@@ -24,14 +24,14 @@
         }
     }
     function getProvinces() {
-        ajax('get', 'getProvinces.php', {'iso2': this.value}, fillProvinces);
+        ajax('get', 'getProvinces.php', {'iso3': this.value}, fillProvinces);
     }
     function fillProvinces(json) {
         var provinces = JSON.parse(json);
         console.log(provinces);
         for (var i = 0; i < provinces.length; i++) {
             var opt = document.createElement('option');
-            opt.text = provinces[i].province;//Objekt json mit Unterelement countries, das jeweils die Wertepaare country-Wert und iso2-Wert hat
+            opt.text = provinces[i].province;//Objekt json mit Unterelement countries, das jeweils die Wertepaare country-Wert und iso3-Wert hat
             opt.value = provinces[i].province;
             selectProvinces.appendChild(opt);
 
