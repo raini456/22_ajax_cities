@@ -10,10 +10,10 @@ $db->setColumns('iso2, country');
 $db->setStatement('DISTINCT');
 $db->setOrderBy('country ASC');
 $data=$db->getData();
-$countries=[];
-foreach($data as $key=>$row){
-  $countries[]=$row['iso2'].';'.$row['country'];  
-}
-echo implode(',',$countries);
+//$countries=[];
+//foreach($data as $key=>$row){
+//  $countries[]=$row['iso2'].';'.$row['country'];  
+//}
+//echo implode(',',$countries);
 
 
