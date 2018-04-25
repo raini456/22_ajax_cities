@@ -41,27 +41,26 @@
                     </label>
                 </div>
                 <hr class="mt-5">
-                <div class="col-12 col-lg-10 col-md-10 col-sm-10 col-xl-10">
+                <div class="col-12 col-lg-10 col-md-10 col-sm-10 col-xl-10 w-6">
                     <label><h3>City-Informationen</h3>
                         <table class="table table-bordered">
-                            <thead></thead>
-                            <tbody>
+                            <thead class="table-secondary">
                                 <tr>
-                                    <th>City-ASCII</th>
-                                    <th>Latitude</th>
-                                    <th>Longitude</th>
-                                    <th>Population</th>
+                                    <th>ISO-Code</th>
+                                    <th>City</th>
                                     <th>Province</th>
+                                    <th>Country</th>
+                                    <th>Population</th>
+                                </tr>                                
+                            </thead>
+                            <tbody>
+                                <tr class="tableInfoTr">
+                                    <td id="iso3">Countrycode</td>
+                                    <td id="city1">City</td>
+                                    <td id="province">Province</td>
+                                    <td id="country">Country</td>
+                                    <td id="pop">Population</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-
                             </tbody>
 
                         </table>

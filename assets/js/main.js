@@ -1,20 +1,38 @@
 (function () {
-    var selectCountry;
-    var selectProvinces;
-    var selectCities;
+    var selectCountry="";
+    var selectProvinces="";
+    var selectCities="";
+    var tableInfoTd=""; 
+    var tableTd=[];
+    var selectTableTd=[];
+    var trValues;
+    var infoKeys=['iso3', 'city', 'province', 'country', 'pop'];
+    var iso3="";
+    var city1="";
+    var province="";
+    var country="";
+    var pop="";
     window.addEventListener('load', init);
     function init() {
         selectCountry = document.querySelector('[name="country"]');
-        selectCountry.addEventListener('change', getProvinces);        
-        selectProvinces = document.querySelector('[name="province"]');        
+        selectCountry.addEventListener('change', getProvinces);
+        selectProvinces = document.querySelector('[name="province"]');
         selectProvinces.addEventListener('change', getCities);
         selectCities = document.querySelector('[name="city"]');
-        selectCities.addEventListener('change', getInfoCity);
+        selectCities.addEventListener('change', getCityInfo);
+        trValues= document.querySelector('table tbody tr');
+        tableInfoTd = document.querySelector('.tableInfoTd');        
+        iso3 = document.querySelector('#iso3');
+        city1 = document.querySelector('#city1');
+        province = document.querySelector('#province');
+        country = document.querySelector('#country');
+        pop = document.querySelector('#pop');
         ajax('get', 'getCountries.php', {}, fillCountries);
+        emptyTd();
     }
-    function deleteOptions(selectBox){
-        var max=selectBox.options.length;
-        for(var i=1; i<max;i++){
+    function deleteOptions(selectBox) {
+        var max = selectBox.options.length;
+        for (var i = 1; i < max; i++) {
             selectBox.removeChild(selectBox.options[1]);
         }
     }
@@ -28,39 +46,74 @@
             opt.text = countries[i].country;//Objekt json mit Unterelement countries, das jeweils die Wertepaare country-Wert und iso3-Wert hat
             opt.value = countries[i].iso3;
             selectCountry.appendChild(opt);
-
         }
     }
     function getProvinces() {
         ajax('get', 'getProvinces.php', {'iso3': this.value}, fillProvinces);
     }
-    function getCities(){
+    function getCities() {
         ajax('get', 'getCities.php', {'province': this.value}, fillCities);
     }
-    function getInfoCity(){
-        ajax('get', 'getInfo.php', {'city': this.value}, fillInfoCity);
+    function getCityInfo() {
+        ajax('get', 'getCityInfo.php', {'id': this.value}, fillCityTable);
+    }
+    function emptyTd(){
+        iso3.innerHTML = "<i><style='color:gray'>Countrycode</style></i>";
+        city1.innerHTML = "<i><style='color:gray'>City</style></i>";
+        province.innerHTML = "<i><style='color:gray'>Province</style></i>";
+        country.innerHTML = "<i><style='color:gray'>Country</style></i>";
+        pop.innerHTML = "<i><style='color:gray'>Population</style></i>";
     }
     function fillProvinces(json) {
         var provinces = JSON.parse(json);
-        deleteOptions(selectProvinces); 
-        deleteOptions(selectCities);        
+        deleteOptions(selectProvinces);
+        deleteOptions(selectCities);
         for (var i = 0; i < provinces.length; i++) {
             var opt = document.createElement('option');
             opt.text = provinces[i].province;//Objekt json mit Unterelement countries, das jeweils die Wertepaare country-Wert und iso3-Wert hat
             opt.value = provinces[i].province;
             selectProvinces.appendChild(opt);
-        }
+            emptyTd();
+        }        
     }
     function fillCities(json) {
-        var cities = JSON.parse(json);         
-        deleteOptions(selectCities);        
+        var cities = JSON.parse(json);
+        deleteOptions(selectCities);
+        emptyTd();
         for (var i = 0; i < cities.length; i++) {
             var opt = document.createElement('option');
             opt.text = cities[i].city;//Objekt json mit Unterelement countries, das jeweils die Wertepaare country-Wert und iso3-Wert hat
-            opt.value = cities[i].city;
+            opt.value = cities[i].id;
             selectCities.appendChild(opt);
         }
     }
+    function fillCityTable(json) {        
+        city = JSON.parse(json);
+//        trValues.innerHTML='';
+//        for(var i=0; i<infoKeys.length;i++){
+//            document.createElement('td');
+//            td.innerHTML=city[infoKeys[i]];
+//            trValues.appendChild(td);
+//        }
+        console.log(city);
+        iso3.innerHTML = city.iso3;
+        city1.innerHTML = city.city;
+        province.innerHTML = city.province;
+        country.innerHTML = city.country;
+        pop.innerHTML = city.pop;
+//        for (var i = 0; i <=5; i++) {
+//            tableTd[i] = document.createElement('td');
+//            tableTd[i].setAttribute('id','id'+i);                        
+//            tableInfoTd.appendChild(tableTd[i]);
+//            selectTableTd[i]=document.querySelector('#id'+i);            
+//        }
+//        id0.innerHTML = city.iso3;
+//        id1.innerHTML = city.city;
+//        id2.innerHTML = city.province;
+//        id3.innerHTML = city.country;
+//        id4.innerHTML = city.pop;
+    }
+
 //              var btns = [];
 //              btns = document.querySelectorAll('button');
 //              var output = document.querySelector('#output');

@@ -10,7 +10,7 @@ if(!$province){
 }
 $db = new DbClassExt('mysql:host=' . HOST . ';dbname=' . DB, USER, PASSWORD);
 $db->setTable('tb_cities');
-$db->setColumns('iso3, city');
+$db->setColumns('id, city');
 $db->setGroupBy('city');
 //$db->setStatement('DISTINCT');
 $db->setOrderBy('city ASC');
