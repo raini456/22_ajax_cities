@@ -5,8 +5,6 @@
     var tableInfoTd=""; 
     var tableTd=[];
     var selectTableTd=[];
-    var trValues;
-    var infoKeys=['iso3', 'city', 'province', 'country', 'pop'];
     var iso3="";
     var city1="";
     var province="";
@@ -20,7 +18,6 @@
         selectProvinces.addEventListener('change', getCities);
         selectCities = document.querySelector('[name="city"]');
         selectCities.addEventListener('change', getCityInfo);
-        trValues= document.querySelector('table tbody tr');
         tableInfoTd = document.querySelector('.tableInfoTd');        
         iso3 = document.querySelector('#iso3');
         city1 = document.querySelector('#city1');
@@ -89,29 +86,23 @@
     }
     function fillCityTable(json) {        
         city = JSON.parse(json);
-//        trValues.innerHTML='';
-//        for(var i=0; i<infoKeys.length;i++){
-//            document.createElement('td');
-//            td.innerHTML=city[infoKeys[i]];
-//            trValues.appendChild(td);
-//        }
         console.log(city);
         iso3.innerHTML = city.iso3;
         city1.innerHTML = city.city;
         province.innerHTML = city.province;
         country.innerHTML = city.country;
         pop.innerHTML = city.pop;
-//        for (var i = 0; i <=5; i++) {
-//            tableTd[i] = document.createElement('td');
-//            tableTd[i].setAttribute('id','id'+i);                        
-//            tableInfoTd.appendChild(tableTd[i]);
-//            selectTableTd[i]=document.querySelector('#id'+i);            
-//        }
-//        id0.innerHTML = city.iso3;
-//        id1.innerHTML = city.city;
-//        id2.innerHTML = city.province;
-//        id3.innerHTML = city.country;
-//        id4.innerHTML = city.pop;
+        for (var i = 0; i <=5; i++) {
+            tableTd[i] = document.createElement('td');
+            tableTd[i].setAttribute('id','id'+i);                        
+            tableInfoTd.appendChild(tableTd[i]);
+            selectTableTd[i]=document.querySelector('#id'+i);            
+        }
+        id0.innerHTML = city.iso3;
+        id1.innerHTML = city.city;
+        id2.innerHTML = city.province;
+        id3.innerHTML = city.country;
+        id4.innerHTML = city.pop;
     }
 
 //              var btns = [];
