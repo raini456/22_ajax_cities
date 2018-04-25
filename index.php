@@ -40,11 +40,35 @@
                         </select>
                     </label>
                 </div>
+                <hr class="mt-5">
+                <div class="col-12 col-lg-10 col-md-10 col-sm-10 col-xl-10">
+                    <label><h3>City-Informationen</h3>
+                        <table class="table table-bordered">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <th>City-ASCII</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                    <th>Population</th>
+                                    <th>Province</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+                    </label>
+                </div>
+
                 <hr>
-                <table class="table">
-
-
-                </table>
             </div>                
         </div>
     </div>
