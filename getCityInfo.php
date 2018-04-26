@@ -10,7 +10,7 @@ if(!is_int($id)){
 }
 $db = new DbClassExt('mysql:host=' . HOST . ';dbname=' . DB, USER, PASSWORD);
 $db->setTable('tb_cities');
-$db->setColumns('city, pop, iso3, country, province');
+$db->setColumns('city, pop, iso3, lat, lng, country, province');
 //$db->setGroupBy('city');
 //$db->setStatement();
 //$db->setOrderBy('city ASC');
